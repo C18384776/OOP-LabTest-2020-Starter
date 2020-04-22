@@ -127,6 +127,7 @@ public class Gantt extends PApplet
 				// down text
 				float y = map(i, 0, tsk.size(), textDown, maxDown);
 				
+				noStroke();
 				// Displays the chart rects.
 				if(j >= t.getStart() && j < t.getEnd())
 				{
