@@ -12,7 +12,6 @@ public class Gantt extends PApplet
 
 	public void loadTasks()
 	{
-		
 	}
 
 	public void printTasks()
