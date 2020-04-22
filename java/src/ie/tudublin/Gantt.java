@@ -100,40 +100,40 @@ public class Gantt extends PApplet
 
 		float textBorder = width * 0.05f;	// 40
 		float maxAcross = width * 0.95f;     // 720
-		float colours = 255.0f / 30.0f;
-		float textDown = height * 0.1f;		// 60
-		float maxDown = height * 0.8f;      // 480
-		float numberMinDown = height * 0.05f;  // 30
-		float lineMaxDown = height * 0.9f;
-		float numberDiff = (maxAcross - textBorder * 3.0f) / 30;
+		float idontknowyet = 45;
 
-		// Research 45 , 25
-		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
-		mouseY > 45  && mouseY < 70)
+		// Going through all items.
+		for (int i = 0 ; i < tsk.size() ; i++ )
 		{
-			println("Research");
-		}
+			Task t = tsk.get(i);
 
-		// Design
-		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
-		mouseY > 90  && mouseY < 115)
-		{
-			println("Design");
-		}
+			int j = i + 1;
 
-		// Phase 1
-		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
-		mouseY > 135  && mouseY < 160)
-		{
-			println("Phase 1");
-		}
-
-		// Phase 2
-		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
-		mouseY > 180  && mouseY < 205)
-		{
-			println("Phase 2");
-		}
+			if(i == 0 )
+			{
+				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > 45   && mouseY < 70)
+				{
+					println(t.getTask());
+					
+				}
+			}
+			else if ( i == 1 )
+			{
+				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > 90 && mouseY < 115)
+				{
+					println(t.getTask());
+				}
+			}
+			else
+			{
+				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > (idontknowyet*j)  && mouseY < (idontknowyet*j) + 25)
+				{
+					println(t.getTask());
+				}
+			}
 	}
 
 	public void mouseDragged()
