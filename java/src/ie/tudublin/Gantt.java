@@ -100,7 +100,7 @@ public class Gantt extends PApplet
 
 		float textBorder = width * 0.05f;	// 40
 		float maxAcross = width * 0.95f;     // 720
-		float idontknowyet = 45;
+		float boxyArea = 45;
 
 		// Going through all items.
 		for (int i = 0 ; i < tsk.size() ; i++ )
@@ -148,7 +148,7 @@ public class Gantt extends PApplet
 			else
 			{
 				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
-				mouseY > (idontknowyet*j)  && mouseY < (idontknowyet*j) + 25)
+				mouseY > (boxyArea*j)  && mouseY < (boxyArea*j) + 25)
 				{
 					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
 					if (finalValue < t.getStart())
@@ -167,6 +167,70 @@ public class Gantt extends PApplet
 	public void mouseDragged()
 	{
 		println("Mouse dragged");
+		float textBorder = width * 0.05f;	// 40
+		float maxAcross = width * 0.95f;     // 720
+		float boxyArea = 45;
+
+		// Going through all items.
+		for (int i = 0 ; i < tsk.size() ; i++ )
+		{
+			Task t = tsk.get(i);
+
+			int j = i + 1;
+
+			int valueClickedOn = mouseX - 120;
+
+			int finalValue;
+
+			if(i == 0)
+			{
+				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > 45   && mouseY < 70)
+				{
+					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
+					}				
+				}
+			}
+			else if ( i == 1 )
+			{
+				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > 90 && mouseY < 115)
+				{
+					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
+					}		
+				}
+			}
+			else
+			{
+				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > (boxyArea*j)  && mouseY < (boxyArea*j) + 25)
+				{
+					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
+					}		
+				}
+			}
+		}
 	}
 
 	public void setup() 
