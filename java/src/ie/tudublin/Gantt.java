@@ -165,6 +165,7 @@ public class Gantt extends PApplet
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 45   && mouseY < 70)
 				{
+					// Finds what value in the row the user clicks on (this is the value from 1 to 30).
 					finalValue = valueClickedOn / 20 + 1;
 				
 					if (finalValue < t.getStart())
@@ -183,6 +184,7 @@ public class Gantt extends PApplet
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 90 && mouseY < 115)
 				{
+					// Finds what value in the row the user clicks on (this is the value from 1 to 30).
 					finalValue = valueClickedOn / 20 + 1;
 					if (finalValue < t.getStart())
 					{
@@ -199,6 +201,7 @@ public class Gantt extends PApplet
 				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > (boxyArea*j)  && mouseY < (boxyArea*j) + 25)
 				{
+					// Finds what value in the row the user clicks on (this is the value from 1 to 30).
 					finalValue = valueClickedOn / 20 + 1;
 					if (finalValue < t.getStart())
 					{
@@ -240,7 +243,9 @@ public class Gantt extends PApplet
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 45   && mouseY < 70)
 				{
+					// Finds what value in the row the user clicks on (this is the value from 1 to 30).
 					finalValue = valueClickedOn / 20 + 1;
+
 					if (finalValue < t.getStart())
 					{
 						t.setStart(finalValue);
@@ -256,7 +261,9 @@ public class Gantt extends PApplet
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 90 && mouseY < 115)
 				{
+					// Finds what value in the row the user clicks on (this is the value from 1 to 30).
 					finalValue = valueClickedOn / 20 + 1;
+
 					if (finalValue < t.getStart())
 					{
 						t.setStart(finalValue);
@@ -272,6 +279,7 @@ public class Gantt extends PApplet
 				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > (boxyArea*j)  && mouseY < (boxyArea*j) + 25)
 				{
+					// Finds what value in the row the user clicks on (this is the value from 1 to 30).
 					finalValue = valueClickedOn / 20 + 1;
 					
 					if (finalValue < t.getStart())
