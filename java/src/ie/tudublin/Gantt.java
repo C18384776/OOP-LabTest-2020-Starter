@@ -44,7 +44,8 @@ public class Gantt extends PApplet
 		float numberMinDown = height * 0.05f;  // 30
 		float lineMaxDown = height * 0.9f;
 		float numberDiff = (maxAcross - textBorder * 3.0f) / 30;
-		
+		float colours = 255.0f / 30.0f;
+
 		// Generates list of tasks on screen.
 		for (int i = 0 ; i < tsk.size() ; i ++)
 		{
@@ -52,6 +53,7 @@ public class Gantt extends PApplet
 
 			float y = map(i, 0, tsk.size(), textDown, maxDown);
 
+			fill(0, 0, 100);
 			text(t.getTask(), textBorder, y);
 		}
 
@@ -71,6 +73,7 @@ public class Gantt extends PApplet
 		// Generate colour bars.
 		for (int i = 0; i < tsk.size() ; i++)
 		{
+			fill(colours * i, 100, 100);
 			for(int j = 1 ; j <= 30 ; j++)
 			{
 				Task t = tsk.get(i);
