@@ -109,13 +109,24 @@ public class Gantt extends PApplet
 
 			int j = i + 1;
 
-			if(i == 0 )
+			int valueClickedOn = mouseX - 120;
+
+			int finalValue;
+
+			if(i == 0)
 			{
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 45   && mouseY < 70)
 				{
-					println(t.getTask());
-					
+					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
+					}				
 				}
 			}
 			else if ( i == 1 )
@@ -123,7 +134,15 @@ public class Gantt extends PApplet
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 90 && mouseY < 115)
 				{
-					println(t.getTask());
+					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
+					}		
 				}
 			}
 			else
@@ -131,9 +150,18 @@ public class Gantt extends PApplet
 				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > (idontknowyet*j)  && mouseY < (idontknowyet*j) + 25)
 				{
-					println(t.getTask());
+					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
+					}		
 				}
 			}
+		}
 	}
 
 	public void mouseDragged()
