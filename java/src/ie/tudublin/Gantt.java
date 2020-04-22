@@ -53,6 +53,7 @@ public class Gantt extends PApplet
 		// End for loop
 	}
 
+	// displayTasks method.
 	public void displayTasks() {
 		// All measurments are done for size(800, 600); but feel free to change the size ; it should work on any screen.
 
@@ -100,13 +101,24 @@ public class Gantt extends PApplet
 			text(i, x, numberMinDown);
 
 			// Make lines.
-			stroke(176, 51, 43);
-			line(x+4, numberMinDown + 10, x+4, lineMaxDown);
+			if (i % 2 == 1)
+			{
+				//Nearly white.
+				stroke(0, 0, 100);
+				line(x+4, numberMinDown + 10, x+4, lineMaxDown);
+			}
+			else
+			{	
+				// Gray.
+				stroke(0, 0, 50);
+				line(x+4, numberMinDown + 10, x+4, lineMaxDown);
+			}
 		}
 
 		// Generate colour bars.
 		for (int i = 0; i < tsk.size() ; i++)
 		{
+			// Sets colours for rects.
 			fill(colours * i, 100, 100);
 			for(int j = 1 ; j <= 30 ; j++)
 			{
@@ -125,12 +137,16 @@ public class Gantt extends PApplet
 		}	// End outer for
 
 	}
+	// End displayTasks method.
 	
+	// mousePressed Method.
 	public void mousePressed()
 	{
 
 		float textBorder = width * 0.05f;	// 40
 		float maxAcross = width * 0.95f;     // 720
+
+		// The y co-ordinate of the rects.
 		float boxyArea = 45;
 
 		// Going through all items.
@@ -144,26 +160,22 @@ public class Gantt extends PApplet
 
 			int finalValue;
 
-			int startVal = t.getStart();
-
-			int endVal = t.getEnd();
-
 			if(i == 0)
 			{
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 45   && mouseY < 70)
 				{
-					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
-
-					if (finalValue > t.getEnd())
+					finalValue = valueClickedOn / 20 + 1;
+				
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
 					{
 						t.setEnd(finalValue);
 					}
-
-					if (finalValue < t.getEnd() && finalValue > t.getStart())
-					{
-						t.setStart(finalValue);
-					}			
+	
 				}
 			}
 			else if ( i == 1 )
@@ -171,88 +183,88 @@ public class Gantt extends PApplet
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 90 && mouseY < 115)
 				{
-					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
-					if (finalValue > t.getEnd())
+					finalValue = valueClickedOn / 20 + 1;
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
+					}
+				}
+			}
+			else
+			{
+				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > (boxyArea*j)  && mouseY < (boxyArea*j) + 25)
+				{
+					finalValue = valueClickedOn / 20 + 1;
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
 					{
 						t.setEnd(finalValue);
 					}
 
-					if (finalValue < t.getEnd() && finalValue > t.getStart())
+				}
+			}
+		}
+	}
+	// End MousePressed method.
+
+	// Start mouseDragged method.
+	public void mouseDragged()
+	{
+		float textBorder = width * 0.05f;	// 40
+		float maxAcross = width * 0.95f;     // 720
+
+		// The y co-ordinate of the rects.
+		float boxyArea = 45;
+
+		// Going through all items.
+		for (int i = 0 ; i < tsk.size() ; i++ )
+		{
+			Task t = tsk.get(i);
+
+			int j = i + 1;
+
+			int valueClickedOn = mouseX - 120;
+
+			int finalValue;
+
+			if(i == 0)
+			{
+				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+				mouseY > 45   && mouseY < 70)
+				{
+					finalValue = valueClickedOn / 20 + 1;
+					if (finalValue < t.getStart())
 					{
 						t.setStart(finalValue);
+					}
+					else
+					{
+						t.setEnd(finalValue);
 					}		
 				}
 			}
-			else
-			{
-				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
-				mouseY > (boxyArea*j)  && mouseY < (boxyArea*j) + 25)
-				{
-					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
-					if (finalValue > t.getEnd())
-					{
-						t.setEnd(finalValue);
-					}
-
-					if (finalValue < t.getEnd() && finalValue > t.getStart())
-					{
-						t.setStart(finalValue);
-					}	
-				}
-			}
-		}
-	}
-
-	public void mouseDragged()
-	{
-		println("Mouse dragged");
-		float textBorder = width * 0.05f;	// 40
-		float maxAcross = width * 0.95f;     // 720
-		float boxyArea = 45;
-
-		// Going through all items.
-		for (int i = 0 ; i < tsk.size() ; i++ )
-		{
-			Task t = tsk.get(i);
-
-			int j = i + 1;
-
-			int valueClickedOn = mouseX - 120;
-
-			int finalValue;
-
-			if(i == 0)
-			{
-				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
-				mouseY > 45   && mouseY < 70)
-				{
-					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
-					if (finalValue > t.getEnd())
-					{
-						t.setEnd(finalValue);
-					}
-
-					if (finalValue < t.getEnd() && finalValue > t.getStart())
-					{
-						t.setStart(finalValue);
-					}				
-				}
-			}
 			else if ( i == 1 )
 			{
 				if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > 90 && mouseY < 115)
 				{
-					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
-					if (finalValue > t.getEnd())
+					finalValue = valueClickedOn / 20 + 1;
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
 					{
 						t.setEnd(finalValue);
 					}
-
-					if (finalValue < t.getEnd() && finalValue > t.getStart())
-					{
-						t.setStart(finalValue);
-					}	
 				}
 			}
 			else
@@ -260,33 +272,40 @@ public class Gantt extends PApplet
 				if ( mouseX > textBorder * 3.0f && mouseX < maxAcross &&
 				mouseY > (boxyArea*j)  && mouseY < (boxyArea*j) + 25)
 				{
-					finalValue = valueClickedOn / 20 + 1; // 20 is 30 / 20 --- will explain better later...
-					if (finalValue > t.getEnd())
+					finalValue = valueClickedOn / 20 + 1;
+					
+					if (finalValue < t.getStart())
+					{
+						t.setStart(finalValue);
+					}
+					else
 					{
 						t.setEnd(finalValue);
 					}
-
-					if (finalValue < t.getEnd() && finalValue > t.getStart())
-					{
-						t.setStart(finalValue);
-					}	
 				}
 			}
 		}
 	}
+	// End mouseDragged method.
 
 	public void setup() 
 	{
+		// HSB colour scheme.
 		colorMode(HSB, 100);
-		loadTasks();
-		printTasks();
-		displayTasks();
 
+		// Loads table
+		loadTasks();
+
+		// Displays table in terminal
+		printTasks();
 	}
 	
 	public void draw()
 	{			
+		// Black background.
 		background(0);
+
+		// Displays tasks on screen.
 		displayTasks();
 	}
 }

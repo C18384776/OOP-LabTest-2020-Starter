@@ -7,7 +7,7 @@ public class Task {
     private String task;
     private int start;
     private int end;
-
+    
     public String getTask() {
         return task;
     }
@@ -51,7 +51,7 @@ public class Task {
     {
 
         return this.task + ", " + this.start + ", " + this.end;
-        
+
     }
 
 
