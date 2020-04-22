@@ -9,6 +9,9 @@ public class Gantt extends PApplet
 {	
 	ArrayList<Task> tsk = new ArrayList<Task>();
 
+
+
+
 	public void settings()
 	{
 		size(800, 600);
@@ -38,14 +41,14 @@ public class Gantt extends PApplet
 	public void displayTasks() {
 
 		float textBorder = width * 0.05f;	// 40
+		float maxAcross = width * 0.95f;     // 720
+		float colours = 255.0f / 30.0f;
 		float textDown = height * 0.1f;		// 60
 		float maxDown = height * 0.8f;      // 480
-		float maxAcross = width * 0.95f;     // 720
 		float numberMinDown = height * 0.05f;  // 30
 		float lineMaxDown = height * 0.9f;
 		float numberDiff = (maxAcross - textBorder * 3.0f) / 30;
-		float colours = 255.0f / 30.0f;
-
+		
 		// Generates list of tasks on screen.
 		for (int i = 0 ; i < tsk.size() ; i ++)
 		{
@@ -94,7 +97,43 @@ public class Gantt extends PApplet
 	
 	public void mousePressed()
 	{
-		println("Mouse pressed");	
+
+		float textBorder = width * 0.05f;	// 40
+		float maxAcross = width * 0.95f;     // 720
+		float colours = 255.0f / 30.0f;
+		float textDown = height * 0.1f;		// 60
+		float maxDown = height * 0.8f;      // 480
+		float numberMinDown = height * 0.05f;  // 30
+		float lineMaxDown = height * 0.9f;
+		float numberDiff = (maxAcross - textBorder * 3.0f) / 30;
+
+		// Research 45 , 25
+		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+		mouseY > 45  && mouseY < 70)
+		{
+			println("Research");
+		}
+
+		// Design
+		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+		mouseY > 90  && mouseY < 115)
+		{
+			println("Design");
+		}
+
+		// Phase 1
+		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+		mouseY > 135  && mouseY < 160)
+		{
+			println("Phase 1");
+		}
+
+		// Phase 2
+		if(mouseX > textBorder * 3.0f && mouseX < maxAcross &&
+		mouseY > 180  && mouseY < 205)
+		{
+			println("Phase 2");
+		}
 	}
 
 	public void mouseDragged()
@@ -107,6 +146,8 @@ public class Gantt extends PApplet
 		colorMode(HSB, 100);
 		loadTasks();
 		printTasks();
+		displayTasks();
+
 	}
 	
 	public void draw()
